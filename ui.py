@@ -32,8 +32,8 @@ def getData():
 # Function responsible for calling all 3 APIs with data from user
 def callApis(np, month, location):
 
-    np = api_nps.getNps()
-    month = api_weather.getWeather()
-    location = api_maps.getMaps()
-
-    return np, month, location
+    np1 = api_nps.getNps(np)
+    month1 = api_weather.getWeather(month)
+    location1 = api_maps.getMaps(location)
+    #retuns data from 3 apis
+    return np1, month1, location1

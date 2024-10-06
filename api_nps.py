@@ -4,8 +4,12 @@ import requests
 #you will be reciving national park name as string
 
 
-def getNps():
-    
+def getNps(np):
+    # np is the name of the national park
+    print(np)
+
+
+    #test variable to test if function works
     test = "test"
 
     return test
