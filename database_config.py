@@ -1,1 +1,1 @@
-database_path = 'database/books.db'
+database_path = 'database/bookmarks.db'

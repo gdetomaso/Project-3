@@ -1,6 +1,7 @@
 """File for user interface functions. """
 import api_maps, api_weather, api_nps
-
+from modelBookmark import BookMark
+import bookmarks
 
 def display_menu_get_choice(menu):
     """ Displays all of the menu options, checks that the user enters a valid choice and returns the choice.
@@ -37,3 +38,20 @@ def callApis(np, month, location):
     location1 = api_maps.getMaps(location)
     #retuns data from 3 apis
     return np1, month1, location1
+
+#store search in a bookmark database if user says yes
+def storeBookmark(np, month, location):
+    if input('Would you like to save this search? (y/n)') == 'y':
+        print('Saving to database...')
+        return BookMark(parkdata=np, weatherdata=month, directiondata=location)
+    else:
+        return None
+
+def displayBookmarks(bookmarks):
+    if bookmarks:
+        for bookmark in bookmarks:
+            print(bookmark)
+    else:
+        print('No bookmarks found.')
+
+    
