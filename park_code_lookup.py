@@ -18,11 +18,13 @@ def get_park_four_letter_code(csv_park_file):
                 return park_code_for_searched_park
     return None
 
+
 def get_four_letter_code_as_string_for_url(csv_park_file):
     park_four_letter_code = get_park_four_letter_code(csv_park_file)
     if park_four_letter_code:
         return''.join(park_four_letter_code) # change list to string for URL
     return None
+
 
 park_code = get_four_letter_code_as_string_for_url(csv_park_file)
 #print(park_code)
