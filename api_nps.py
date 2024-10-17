@@ -19,8 +19,8 @@ def main():
     if error or not national_park_info:
         print("Sorry, could not get park information", error)
     else:
-        park_name, park_state, park_description = show_park_info(national_park_info)
-        print(f'Park Name: {park_name} \nPark State: {park_state} \nPark Description: {park_description}')
+        park_name, park_state, park_description, park_lat_long = show_park_info(national_park_info)
+        print(f'Park Name: {park_name} \nPark State: {park_state} \nPark Description: {park_description} \nPark Lat and Long {park_lat_long}')
         # prints park name from information pulled from api website based on query
 
 
@@ -65,11 +65,24 @@ def get_park_description(national_park_info):
         return None
 
 
+def get_park_lat_long(national_park_info):
+    try:
+        park_lat_long = national_park_info[0]['latLong']
+        lat_only, long_only = park_lat_long.split(',')
+        lat_of_park = lat_only.split(',')
+        long_of_park = long_only.split(',')
+        return lat_of_park, long_of_park
+    except KeyError:
+        print('The park latitude and longitude data is not available')
+        return None
+
+
 def show_park_info(national_park_info):
     park_name = get_park_name(national_park_info)
     park_state = get_park_state(national_park_info)
     park_description = get_park_description(national_park_info)
-    return park_name, park_state, park_description
+    park_lat_long = get_park_lat_long(national_park_info)
+    return park_name, park_state, park_description, park_lat_long
 
 
 if __name__ == '__main__':
