@@ -15,13 +15,13 @@ def getMaps(location):
     params = {
         'q' : location,
         'format': 'json',
-        'address': 1,
+        'addressdetails': 1,
         'limit': 1,
     }
     # request parameters
 
     try:
-        response = requests.get(url,params=params)
+        response = requests.get(url, params=params)
         response.raise_for_status()
         # API request
         # raise errors for unwanted responses
