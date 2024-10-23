@@ -9,14 +9,13 @@ def getMaps(location):
     # location is the name of the city and state
     print(f'Getting directions data for: {location}')
 
-    url = 'https://nominatim.openstreetmap.org/search'
-    # Nominatim API is the geocoding service for OSM
-
+    url = f'https://api.openrouteservice.org/v2/directions/driving-car?'
+    # changed the API to openrouteservice since that is better for directions between two points
+    api_key ='5b3ce3597851110001cf6248107ac5aa189f4f75a3eaf1a68d83d4fc'
     params = {
-        'q' : location,
-        'format': 'json',
-        'addressdetails': 1,
-        'limit': 1,
+        'api_key' : api_key,
+        'start': ['start_lon', 'start_lat'],
+        'end': ['end_lon', 'end_lat']
     }
     # request parameters
 
@@ -30,12 +29,12 @@ def getMaps(location):
 
         if data:
             # retrieve information
-            starting_location = data[0]
+            starting_location = data['']
             home_address = starting_location['display_name']
             return {
                 'home_address': home_address,
-                'city': starting_location.get('address', {}).get('city', ''),
-                'country': starting_location.get('address', {}).get('country', '')
+                'city': starting_location.get('address', {}).get('lat', ''),
+                'country': starting_location.get('address', {}).get('lon', '')
             #     so the user can input city and country instead of lat and lon
             }
         else:
@@ -46,7 +45,7 @@ def getMaps(location):
 #     error handling
 
 if __name__ == '__main__':
-    location = 'Minneapolis, USA'
+    location = '93.2650, 44.9778'
     # input format
     result = getMaps(location)
     print(result)
