@@ -16,36 +16,44 @@ def main():
         if choice == 'Q':
             break
 # uses add_option from menu.py to add options to the menu
+
+
 def create_menu():
     menu = Menu()
-    menu.add_option('1', 'Search', search)
+    menu.add_option('1', 'Search Parks', search)
     menu.add_option('2', 'Bookmark', bookmark)
-    menu.add_option('3', 'view bookmarks', viewBookmarks)
+    menu.add_option('3', 'View Bookmarks', view_bookmarks)
     menu.add_option('Q', 'Quit', quit)
     return menu
 
-# Need to ask user for National park, month of vist, and current location. 
-def search():
-    #getData() gets required data from user National park, month of vist, and current location
-    np, month, location = ui.getData()
-    #call each api with data
-    ui.callApis(np, month, location)
-    #takes the returned data from the APIs and prints it to the user in a nice format
-    ui.printPrettyResults(np, month, location)
 
+# Need to ask user for National park, month of visit, and current location.
+def search():
+    #getData() gets required data from user National park, month of visit, and current location
+    park_entered, month_entered, distance = ui.get_data()
+    #call each api with data
+    ui.call_apis(park_entered, month_entered, distance)
+    #takes the returned data from the APIs and prints it to the user in a nice format
+    print_pretty_results(park_entered, month_entered, distance)
 
 
 def bookmark():
     print('Bookmarking')
 
 
-def viewBookmarks():
+def view_bookmarks():
     print('Viewing Bookmarks')
+
 
 def quit():
     print('Quitting')
 
 
+# Function responsible for printing API results in a nice format
+ def print_pretty_results(np, month, location):
+    print('National Park: ' + np)
+    print('Month: ' + month)
+    print('Distance: ' + location)
 
 
 main()
