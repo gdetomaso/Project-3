@@ -19,8 +19,8 @@ def main():
     if error or not national_park_info:
         print("Sorry, could not get park information", error)
     else:
-        park_name, park_state, park_description, lat_of_park, long_of_park = show_park_info(national_park_info)
-        print(f'Park Name: {park_name} \nPark State: {park_state} \nPark Description: {park_description} \nPark Latitude: {lat_of_park} \nPark Longitude: {long_of_park}')
+        park_name, park_state, postal_code, park_description, lat_of_park, long_of_park = show_park_info(national_park_info)
+        print(f'Park Name: {park_name} \nPark State: {park_state} \nPark Postal Code: {postal_code}\nPark Description: {park_description} \nPark Latitude: {lat_of_park} \nPark Longitude: {long_of_park}')
         # prints park name from information pulled from api website based on query
 
 
@@ -56,6 +56,15 @@ def get_park_state(national_park_info):
         return None
 
 
+def get_park_postal_code(national_park_info):
+    try:
+        postal_code= national_park_info[0]['addresses'][0]['postalCode']
+        return postal_code
+    except KeyError:
+        print('The park postal code data is not available')
+        return None
+
+
 def get_park_description(national_park_info):
     try:
         park_description = national_park_info[0]['description']
@@ -87,14 +96,14 @@ def get_park_long(national_park_info):
         return None
 
 
-
 def show_park_info(national_park_info):
     park_name = get_park_name(national_park_info)
     park_state = get_park_state(national_park_info)
+    postal_code = get_park_postal_code(national_park_info)
     park_description = get_park_description(national_park_info)
     park_lat = get_park_lat(national_park_info)
     park_long = get_park_long(national_park_info)
-    return park_name, park_state, park_description, park_lat, park_long
+    return park_name, park_state, postal_code, park_description, park_lat, park_long
 
 
 if __name__ == '__main__':
