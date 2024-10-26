@@ -8,8 +8,8 @@ import os
 from pprint import pprint
 from park_code_lookup import park_code
 
-#when the user inputs data into program
-#you will be receiving national park name as string
+# when the user inputs data into program
+# you will be receiving national park name as string
 
 
 def main():
