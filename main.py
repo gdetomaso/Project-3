@@ -1,13 +1,15 @@
 """Program that uses apis to inform user of weather, distance and park info
 of the national park they want to visit"""
-
+from api_nps import get_park_postal_code, show_park_info
 from menu import Menu
 import ui
 
 #main function that runs the entire program
-def main():
-
+def main(postal_code):
     menu = create_menu()
+    parks_zip = show_park_info(national_park_info=postal_code)
+    print(parks_zip)
+
 
     while True:
         choice = ui.display_menu_get_choice(menu)
@@ -15,6 +17,8 @@ def main():
         action()
         if choice == 'Q':
             break
+
+
 # uses add_option from menu.py to add options to the menu
 def create_menu():
     menu = Menu()
@@ -34,7 +38,6 @@ def search():
     ui.printPrettyResults(np, month, location)
 
 
-
 def bookmark():
     print('Bookmarking')
 
@@ -47,5 +50,4 @@ def quit():
 
 
 
-
-main()
+main(postal_code=any)
