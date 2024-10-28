@@ -14,26 +14,20 @@ def display_menu_get_choice(menu):
         else:
             print('Not a valid choice, try again.')
 
-# Function responsible for printing API results in a nice format
-def printPrettyResults(np, month, location):
-
-    print('National Park: ' + np)
-    print('Month: ' + month)
-    print('Location: ' + location)
 
 # Function responsible for getting data from user will be given to callApis
-# Need to add data validation!!
-def getData():
-    np = input('Enter data np: ')
-    month = input('Enter data month: ')
-    location = input('Enter data location: ')
-    return np, month, location
+# todo add data validation!!
+def get_data():
+    park_entered = input('Enter park name: ')
+    month_entered = input('Enter month: ')
+    return park_entered, month_entered
+
 
 # Function responsible for calling all 3 APIs with data from user
-def callApis(np, month, location):
+def call_apis(park_entered, month_entered, distance):
 
-    np1 = api_nps.getNps(np)
-    month1 = api_weather.getWeather(month)
-    location1 = api_maps.getMaps(location)
+    parks1 = api_nps.getNps(park_entered)
+    month1 = api_weather.getWeather(month_entered)
+    distance1 = api_maps.getMaps(distance)
     #retuns data from 3 apis
-    return np1, month1, location1
+    return parks1, month1, distance1
