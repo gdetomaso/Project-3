@@ -3,6 +3,7 @@ and the description of the park. The API URL format requires a four-digit state 
 through the park_code_lookyp.py module and imported to use in this module. """
 
 import requests
+from models import NationalPark
 
 import os
 from pprint import pprint
@@ -10,9 +11,10 @@ from park_code_lookup import get_park_code_for_use
 # when the user inputs data into program
 # you will be receiving national park name as string
 
+api_key = os.environ['NATIONAL_PARKS_KEY']
 
 def main2():
-    api_key = os.environ['NATIONAL_PARKS_KEY']
+   
     national_park_info, error = get_national_park_info_from_api(api_key)
 
     if error or not national_park_info:
@@ -23,14 +25,19 @@ def main2():
         # prints park name from information pulled from api website based on query
     pass
 
-def get_national_park_info_from_api(api_key):
-    url = f'https://developer.nps.gov/api/v1/parks?parkCode={get_park_code_for_use()}&api_key={api_key}' #this is all parks, by parkCode: https://developer.nps.gov/api/v1/parks?parkCode=yell&api_key=
+
+def get_national_park_info_from_api(park_code):
+    url = f'https://developer.nps.gov/api/v1/parks?parkCode={park_code}&api_key={api_key}' #this is all parks, by parkCode: https://developer.nps.gov/api/v1/parks?parkCode=yell&api_key=
     try:
         response = requests.get(url)
         response.raise_for_status() # Raise exception for 400/500 errors
         national_park_info = response.json()
         park_data = national_park_info['data']
-        return park_data, None
+
+        # todo not complete, decide whether to use individual lat, long or a list or tuple 
+        park_result = NationalPark(park_code=park_code, lat=get_park_lat_long(park_data), postal_code=get_park_postal_code(park_data))
+        return park_result, None
+    
     except Exception as e:
         print (e)
         pprint(response.text)
@@ -64,25 +71,15 @@ def get_park_description(national_park_info):
         return None
 
 
-def get_park_lat(national_park_info):
+def get_park_lat_long(national_park_info):
     try:
-        park_lat_long = national_park_info[0]['latLong']
-        split_lat_long= park_lat_long.split(',')
-        lat_of_park = split_lat_long[0].split(':')[1]
-        return lat_of_park
+        park_lat_long = national_park_info[0]['latLong']    
+        # split_lat_long= park_lat_long.split(',')
+        # lat_of_park = split_lat_long[0].split(':')[1]
+        # TOOO get lat and long
+        return [lat_of_park, long_of_park]
     except KeyError:
-        print('The park latitude data is not available')
-        return None
-
-
-def get_park_long(national_park_info):
-    try:
-        park_lat_long = national_park_info[0]['latLong']
-        split_lat_long= park_lat_long.split(',')
-        long_of_park = split_lat_long[1].split(':')[1]
-        return long_of_park
-    except KeyError:
-        print('The park longitude data is not available')
+        print('The park latitude/longitide data is not available')
         return None
 
 

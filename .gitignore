@@ -1,6 +1,7 @@
 __pycache__/
 database/*.db
 env
+venv 
 NPS-Unit-List.xlsx
 .idea
 test_park_api.py
