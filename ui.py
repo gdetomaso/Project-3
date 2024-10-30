@@ -14,6 +14,7 @@ def display_menu_get_choice(menu):
         else:
             print('Not a valid choice, try again.')
 
+            
 # Function responsible for printing API results in a nice format
 def printPrettyResults(np, month, results): # todo add other arguments
 
