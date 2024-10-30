@@ -25,6 +25,7 @@ def get_four_letter_code_as_string_for_url(csv_park_file):
         return''.join(park_four_letter_code) # change list to string for URL
     return None
 
+def get_park_code_for_use():
 
-park_code = get_four_letter_code_as_string_for_url(csv_park_file)
-#print(park_code)
+    park_code = get_four_letter_code_as_string_for_url(csv_park_file)
+    return park_code

@@ -6,13 +6,12 @@ import requests
 
 import os
 from pprint import pprint
-from park_code_lookup import park_code
-
+from park_code_lookup import get_park_code_for_use
 # when the user inputs data into program
 # you will be receiving national park name as string
 
 
-def main():
+def main2():
     api_key = os.environ['NATIONAL_PARKS_KEY']
     national_park_info, error = get_national_park_info_from_api(api_key)
 
@@ -22,10 +21,10 @@ def main():
         park_name, postal_code, park_description, lat_of_park, long_of_park = show_park_info(national_park_info)
         print(f'Park Name: {park_name} \nPark Postal Code: {postal_code}\nPark Description: {park_description} \nPark Latitude: {lat_of_park} \nPark Longitude: {long_of_park}')
         # prints park name from information pulled from api website based on query
-
+    pass
 
 def get_national_park_info_from_api(api_key):
-    url = f'https://developer.nps.gov/api/v1/parks?parkCode={park_code}&api_key={api_key}' #this is all parks, by parkCode: https://developer.nps.gov/api/v1/parks?parkCode=yell&api_key=
+    url = f'https://developer.nps.gov/api/v1/parks?parkCode={get_park_code_for_use()}&api_key={api_key}' #this is all parks, by parkCode: https://developer.nps.gov/api/v1/parks?parkCode=yell&api_key=
     try:
         response = requests.get(url)
         response.raise_for_status() # Raise exception for 400/500 errors
@@ -97,4 +96,4 @@ def show_park_info(national_park_info):
 
 
 if __name__ == '__main__':
-    main()
+    main2()
