@@ -13,7 +13,7 @@ def get_national_park_info_for_park_and_month(park_code, month):
         lat = national_park_info.lat
         long = national_park_info.long
 
-
+        
     #todo after merge
         # weather, weather_error = api_weather.getWeather(postal_code, month)
         # travel_from_minneapolis, travel_error = api_maps.directions(lat,long)
