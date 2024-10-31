@@ -1,5 +1,6 @@
 import api_maps, api_nps, api_weather
 
+
 def get_national_park_info_for_park_and_month(park_code, month):
     # call NPS api with park code, get a NationalPark object, error in return
     national_park_info, np_error = api_nps.get_national_park_info_from_api(park_code)
@@ -12,7 +13,8 @@ def get_national_park_info_for_park_and_month(park_code, month):
         postal_code = national_park_info.postal_code
         lat = national_park_info.lat
         long = national_park_info.long
-        official_park_name = national_park_info.park_name
+        park_name = national_park_info.name
+        park_description = national_park_info.description
 
     #todo after merge
         # weather, weather_error = api_weather.getWeather(postal_code, month)
@@ -21,7 +23,6 @@ def get_national_park_info_for_park_and_month(park_code, month):
         # TODO check for errors
 
         # return data if available
-        return national_park_info, None, None
 
+        return park_name, park_description, None, None, None,
     # todo add weather, travel_from_minneapolis when merged
-

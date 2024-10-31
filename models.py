@@ -9,8 +9,9 @@ class NationalPark:
         self.description = park_description
         self.postal_code = postal_code
 
+
     def __str__(self):
-        return self.description
+        return f'{self.name}, {self.description}'
     #todo add the other fields
 
 

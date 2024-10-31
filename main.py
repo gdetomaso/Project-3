@@ -17,7 +17,6 @@ def main():
         if choice == 'Q':
             break
 # uses add_option from menu.py to add options to the menu
-#Testing
 
 def create_menu():
     menu = Menu()
@@ -36,14 +35,15 @@ def search():
 
     park_code = park_code_lookup.get_four_letter_code_as_string_for_url(national_park_name)
     if park_code is None:
-        pass # todo handle not found
+        print("Park not found. Please try again.")
+        return
 
     else:
         # call each api with data
-        national_park_info, monthly_weather, travel_from_minneapolis = api_manager.get_national_park_info_for_park_and_month(park_code, month)
+        park_name, park_description, national_park_info, monthly_weather, travel_from_minneapolis = api_manager.get_national_park_info_for_park_and_month(park_code, month)
         # takes the returned data from the APIs and prints it to the user in a nice format
 
-        ui.printPrettyResults(None, national_park_info,None, None, )
+        ui.printPrettyResults(park_name, park_description,None, None )
 
 
 def bookmark():
@@ -56,6 +56,7 @@ def view_bookmarks():
 
 def quit():
     print('Quitting')
+
 
 
 if __name__ == '__main__':
