@@ -42,6 +42,7 @@ def search():
         # call each api with data
         national_park_info, monthly_weather, travel_from_minneapolis = api_manager.get_national_park_info_for_park_and_month(park_code, month)
         # takes the returned data from the APIs and prints it to the user in a nice format
+
         ui.printPrettyResults(None, national_park_info,None, None, )
 
 
