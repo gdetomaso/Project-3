@@ -19,7 +19,6 @@ def main():
 # uses add_option from menu.py to add options to the menu
 
 
-
 def create_menu():
     menu = Menu()
     menu.add_option('1', 'Search Parks', search)
