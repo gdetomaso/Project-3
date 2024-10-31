@@ -26,4 +26,3 @@ def get_national_park_info_for_park_and_month(park_code, month):
         # return data if available
         return park_name, park_description, None, None, None,
     # todo add weather, travel_from_minneapolis when merged
-    
