@@ -2,7 +2,6 @@
 of the national park they want to visit"""
 from menu import Menu
 import ui
-from api_nps import get_park_postal_code, show_park_info
 import park_code_lookup
 import api_manager
 
@@ -10,8 +9,6 @@ import api_manager
 #main function that runs the entire program
 def main():
     menu = create_menu()
-    # parks_zip = show_park_info(national_park_info=postal_code)
-    # print(parks_zip)
 
     while True:
         choice = ui.display_menu_get_choice(menu)
@@ -45,7 +42,7 @@ def search():
         # call each api with data
         national_park_info, monthly_weather, travel_from_minneapolis = api_manager.get_national_park_info_for_park_and_month(park_code, month)
         # takes the returned data from the APIs and prints it to the user in a nice format
-        ui.printPrettyResults(national_park_name, park_code, month, national_park_info, monthly_weather, travel_from_minneapolis)
+        ui.printPrettyResults(None, national_park_info,None, None, )
 
 
 def bookmark():
@@ -58,11 +55,6 @@ def view_bookmarks():
 
 def quit():
     print('Quitting')
-
-def print_pretty_results(np, month, location):
-    print('National Park: ' + np)
-    print('Month: ' + month)
-    print('Distance: ' + location)
 
 
 if __name__ == '__main__':

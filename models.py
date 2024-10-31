@@ -1,19 +1,22 @@
-
-
 #setting objects for National Parks API
 class NationalPark:
-    def __init__(self, park_name, park_code, lat, long, description, postal_code):
-    # todo set the other fields
+    def __init__(self, park_name, park_code, lat, long, park_description, postal_code):
+    # set the other fields
         self.name = park_name
         self.code = park_code
         self.lat = lat
         self.long = long
-        self.description = description
+        self.description = park_description
         self.postal_code = postal_code
+
+    def __str__(self):
+        return self.description
+    #todo add the other fields
 
 
 class Weather:
-    pass
+    def __init__(self, weather_info):
+        self.weather_info = weather_info
 
 
 class TravelDirections:
