@@ -13,15 +13,7 @@ def display_menu_get_choice(menu):
             return choice
         else:
             print('Not a valid choice, try again.')
-
             
-# Function responsible for printing API results in a nice format
-def printPrettyResults(np, month, results): # todo add other arguments
-
-    print('National Park: ' + np)
-    print('Month: ' + month)
-    print('Location: ' + results) #TODO display somehow
-
 # Function responsible for getting data from user will be given to callApis
 # Need to add data validation!!
 def getData():
@@ -29,4 +21,13 @@ def getData():
     month = input('Enter month you want to visit: ')
     #location = input('Enter your location: ')
     return np, month
+            
+    
+# Function responsible for printing API results in a nice format
+def printPrettyResults(park_name, park_description, month, results): # todo add other arguments: # todo add other arguments
+
+    print(f'National Park: {park_name}')
+    print(f'Park Description: {park_description}')
+    print(f'Month: {month}')
+    print(f'Location: {results}') #TODO display somehow
 
