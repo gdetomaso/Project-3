@@ -14,6 +14,7 @@ def display_menu_get_choice(menu):
         else:
             print('Not a valid choice, try again.')
 
+
 # Function responsible for getting data from user will be given to callApis
  # Need to add data validation!!
 def getData():

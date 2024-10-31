@@ -19,10 +19,13 @@ def main():
 # uses add_option from menu.py to add options to the menu
 
 
+
 def create_menu():
     menu = Menu()
     menu.add_option('1', 'Search Parks', search)
     # menu.add_option('2', 'Bookmark', bookmark) only an option if user has seen
+# uses add_option from menu.py to add options to the menu
+
     menu.add_option('3', 'View Bookmarks', view_bookmarks)
     menu.add_option('Q', 'Quit', quit)
     return menu
@@ -31,6 +34,7 @@ def create_menu():
 # Need to ask user for National park, month of visit, and current location.
 def search():
     #getData() gets required data from user National park, month of visit, and current location
+
 
     national_park_name, month = ui.getData()
 
