@@ -17,15 +17,12 @@ def main():
         if choice == 'Q':
             break
 # uses add_option from menu.py to add options to the menu
-
-
+#Testing
 
 def create_menu():
     menu = Menu()
     menu.add_option('1', 'Search Parks', search)
     # menu.add_option('2', 'Bookmark', bookmark) only an option if user has seen
-# uses add_option from menu.py to add options to the menu
-
     menu.add_option('3', 'View Bookmarks', view_bookmarks)
     menu.add_option('Q', 'Quit', quit)
     return menu
@@ -34,7 +31,6 @@ def create_menu():
 # Need to ask user for National park, month of visit, and current location.
 def search():
     #getData() gets required data from user National park, month of visit, and current location
-
 
     national_park_name, month = ui.getData()
 
@@ -46,7 +42,8 @@ def search():
         # call each api with data
         national_park_info, monthly_weather, travel_from_minneapolis = api_manager.get_national_park_info_for_park_and_month(park_code, month)
         # takes the returned data from the APIs and prints it to the user in a nice format
-        ui.printPrettyResults(national_park_name, national_park_info,None, None, )
+
+        ui.printPrettyResults(None, national_park_info,None, None, )
 
 
 def bookmark():
