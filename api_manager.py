@@ -26,3 +26,10 @@ def get_national_park_info_for_park_and_month(park_code, month):
 
         return park_name, park_description, None, None, None,
     # todo add weather, travel_from_minneapolis when merged
+
+def get_weather_info(postal_code, month):
+    weather, weather_error = api_weather.getWeather(postal_code, month)
+    if weather_error:
+        print("Sorry, could not get weather info", weather_error)
+    else:
+        return weather
