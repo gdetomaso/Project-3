@@ -40,10 +40,10 @@ def search():
 
     else:
         # call each api with data
-        park_name, park_description, national_park_info, monthly_weather, travel_from_minneapolis = api_manager.get_national_park_info_for_park_and_month(park_code, month)
+        park_name, park_description, national_park_info, postal_code, travel_from_minneapolis = api_manager.get_national_park_info_for_park_and_month(park_code, month)
         # takes the returned data from the APIs and prints it to the user in a nice format
-
-        ui.printPrettyResults(park_name, park_description,None, None )
+        weather = api_manager.get_weather(postal_code, month)
+        ui.printPrettyResults(park_name, park_description,weather, None )
 
 
 def bookmark():

@@ -19,15 +19,15 @@ def display_menu_get_choice(menu):
  # Need to add data validation!!
 def getData():
     np = input('Enter national park name (e.g. "Grand Canyon National Park"): ')
-    month = input('Enter month you want to visit: ')
+    month = input('Enter number of month you want to visit: ')
     # location = input('Enter your location: ')
     return np, month
             
     
 # Function responsible for printing API results in a nice format
-def printPrettyResults(park_name, park_description, month, results): # todo add other arguments: # todo add other arguments
+def printPrettyResults(park_name, park_description, weather, results): # todo add other arguments: # todo add other arguments
 
     print(f'National Park: {park_name}')
     print(f'Park Description: {park_description}')
-    print(f'Weather: {month}')
+    print(f'Weather: {weather}')
     print(f'Location: {results}') #TODO display somehow

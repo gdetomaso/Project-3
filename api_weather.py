@@ -1,6 +1,6 @@
 import requests
+#from models import Weather
 import os
-from models import Weather
 
 
 #when the user inputs data into program
@@ -9,12 +9,18 @@ from models import Weather
 
 # This function needs to return necassary data from API in string format
 # program will not work if this function does not return necassary data
-def getWeather(month, postal_code):
+def getWeather(postal_code, month):
     # month is the name of the month of visit
+    #print(month, postal_code)
+    
+    #test variable to test if function works
+
+
+
     key = os.environ.get('PROJ_WEATHER')
     query = {'unitGroup': 'us', 'include': 'days', 'key': key, 'contentType': 'json'}
-    zip = '55434'
-    month = '5'
+    zip = postal_code
+    month = month
 
     url = (f'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline//{zip}/2023-{month}-01/2023-{month}-28')
 
@@ -40,10 +46,7 @@ def getWeather(month, postal_code):
     avg_min_temp = total_min_temp / count
     avg_precip = total_precip / count
 
-    print(month, postal_code)
-    
-    #test variable to test if function works
-    weather = (f'In May the average high and low temperatures are {avg_max_temp:.2f}F and {avg_min_temp:.2f}F and the average precipitation is {avg_precip:.2f} inches.')
-    
-    return weather
+    weather_info =(f'In May the average high and low temperatures are {avg_max_temp:.2f}F and {avg_min_temp:.2f}F and the average precipitation is {avg_precip:.2f} inches.')
+
+    return weather_info
 
