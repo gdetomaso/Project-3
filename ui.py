@@ -31,15 +31,3 @@ def printPrettyResults(park_name, park_description, month, results): # todo add 
     print(f'Park Description: {park_description}')
     print(f'Month: {month}')
     print(f'Location: {results}') #TODO display somehow
-
-
-# Function responsible for printing API results in a nice format
-def printPrettyResults(park_name, park_description, month, results): # todo add other arguments
-
-    print(f'National Park: {park_name}')
-    print(f'Park Description: {park_description}')
-    print(f'Month: {month}')
-    print(f'Location: {results}') #TODO display somehow
-
-
-
