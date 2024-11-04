@@ -19,7 +19,15 @@ def display_menu_get_choice(menu):
  # Need to add data validation!!
 def getData():
     np = input('Enter national park name (e.g. "Grand Canyon National Park"): ')
-    month = input('Enter number of month you want to visit: ')
+    #month = input('Enter number of month you want to visit: ')
+    try:
+        user_input = input("Please enter a month number (1-12): ")  # Get input as a string
+        month = int(user_input)  # Convert input to an integer
+        # Optionally, check if the month is within the valid range
+        if month < 1 or month > 12:
+            print(f"Please enter a valid month number between 1 and 12.")
+    except ValueError:
+        print("Invalid input! Please enter a numeric value.")
     # location = input('Enter your location: ')
     return np, month
             
