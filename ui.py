@@ -33,9 +33,10 @@ def getData():
             
     
 # Function responsible for printing API results in a nice format
-def printPrettyResults(park_name, park_description, weather, results): # todo add other arguments: # todo add other arguments
+def printPrettyResults(park_name, park_description, weather, distance, duration): # todo add other arguments: # todo add other arguments
 
     print(f'National Park: {park_name}')
     print(f'Park Description: {park_description}')
-    print(f'Weather: {weather}')
-    print(f'Location: {results}') #TODO display somehow
+    print(f'Weather Info: {weather}')
+    print(f'Travel Info: {distance}')
+    #TODO display somehow
