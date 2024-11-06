@@ -24,5 +24,8 @@ def get_national_park_info_for_park_and_month(park_code, month):
 
         # return data if available
 
-        return park_name, park_description, None, None, None,
+        return park_name, park_description, None, long, lat,
     # todo add weather, travel_from_minneapolis when merged
+    def get_directions(long, lat):
+        travel_info = api_maps.get_directions(long, lat)
+        return travel_info
