@@ -14,15 +14,15 @@ def main():
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
         action()
-        if choice == 'Q':
+        if choice.upper() == 'Q':
             break
 # uses add_option from menu.py to add options to the menu
 
 def create_menu():
     menu = Menu()
     menu.add_option('1', 'Search Parks', search)
-    # menu.add_option('2', 'Bookmark', bookmark) only an option if user has seen
-    menu.add_option('3', 'View Bookmarks', view_bookmarks)
+    menu.add_option('2', 'View Bookmarks', view_bookmarks)
+    # menu.add_option('3', 'Bookmark', bookmark) only an option if user has seen
     menu.add_option('Q', 'Quit', quit)
     return menu
 
@@ -40,11 +40,13 @@ def search():
 
     else:
         # call each api with data
-        park_name, park_description, national_park_info, monthly_weather = api_manager.get_national_park_info_for_park_and_month(park_code, month)
-        travel_from_minneapolis = api_manager.get_directions(long, lat)
-        # takes the returned data from the APIs and prints it to the user in a nice format
 
-        ui.printPrettyResults(park_name, park_description,None, travel_from_minneapolis )
+        park_name, park_description, postal_code, park_long, park_lat = api_manager.get_national_park_info_for_park_and_month(park_code, month)
+        # takes the returned data from the APIs and prints it to the user in a nice format
+        weather = api_manager.get_weather(postal_code, month)
+        distance = api_manager.get_maps_info(park_long,park_lat)
+        duration = api_manager.get_maps_info(park_long,park_lat)
+        ui.printPrettyResults(park_name, park_description,weather,distance,duration)
 
 
 def bookmark():

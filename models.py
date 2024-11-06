@@ -15,9 +15,9 @@ class NationalPark:
     #todo add the other fields
 
 
-class Weather:
-    def __init__(self, weather_info):
-        self.weather_info = weather_info
+# class Weather:
+#     def __init__(self, weather_info):
+#         self.weather_info = weather_info
 
 
 class TravelDirections:

@@ -20,12 +20,17 @@ def get_national_park_info_for_park_and_month(park_code, month):
         # weather, weather_error = api_weather.getWeather(postal_code, month)
         # travel_from_minneapolis, travel_error = api_maps.directions(lat,long)
 
-        # TODO check for errors
-
+    # TODO check for errors
         # return data if available
 
-        return park_name, park_description, None, long, lat,
+
+        return park_name, park_description, postal_code, long, lat
     # todo add weather, travel_from_minneapolis when merged
-    def get_directions(long, lat):
-        travel_info = api_maps.get_directions(long, lat)
-        return travel_info
+
+def get_weather(postal_code, month):
+    weather_info = api_weather.getWeather(postal_code, month)
+    return weather_info
+
+def get_maps_info(long, lat):
+    maps_info = api_maps.get_directions(long, lat)
+    return maps_info
