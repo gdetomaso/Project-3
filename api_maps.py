@@ -26,7 +26,6 @@ def get_directions(end_lon, end_lat):
     }
      # request parameters
     # the data is in 'longitude, latitude' format
-
     try:
         response = requests.get(url, params=params)
         response.raise_for_status()
@@ -69,12 +68,4 @@ def get_directions(end_lon, end_lat):
     # api_key = '5b3ce3597851110001cf6248107ac5aa189f4f75a3eaf1a68d83d4fc'
     # url = f'https://api.openrouteservice.org/v2/directions/driving-car?api_key={api_key}&start=-93.282978,44.973667&end=-122.14346,42.91138'
     #
-    # response = requests.get(url)
-    # data = response.json()
-    # pprint(data)
-    # location = '93.2650, 44.9778'
-    # input format
-    # result = getMaps(location, location)
-    # print(result)
-
 
