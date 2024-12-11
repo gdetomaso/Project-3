@@ -12,20 +12,20 @@ start_lat = 44.973667
 # end_lat = 42.91138
 
 
-def get_directions(end_lon, end_lat):
+def get_directions(end_lat, end_lon):  # Locations are almost always given as lat, lon in that order 
+    # This assumes you are starting in Minneapolis 
     # starting and ending longitude and latitude
     print(f'Getting directions data for: {end_lon, end_lat}')
     api_key = '5b3ce3597851110001cf6248107ac5aa189f4f75a3eaf1a68d83d4fc'
     url = f'https://api.openrouteservice.org/v2/directions/driving-car?'
     # changed the API to openrouteservice since that is better for directions between two points
 
+     # request parameters
     params = {
          'api_key' : f'{api_key}',
-         'start': f'{start_lon},{start_lat}',
-         'end': f'{end_lon},{end_lat}'
+         'start': f'{start_lat},{start_lon}',
+         'end': f'{end_lat},{end_lon}'
     }
-     # request parameters
-    # the data is in 'longitude, latitude' format
     try:
         response = requests.get(url, params=params)
         response.raise_for_status()
@@ -45,21 +45,26 @@ def get_directions(end_lon, end_lat):
             #     'distance': distance,
             #     'duration': duration,
             # }
+            # converting meters to miles and seconds to hours
             distance_in_miles = distance / 1609.34
             duration_in_hours = duration / 3600
-            # converting meters to miles and seconds to hours
 
+            # rounding both to two decimal places
             distance_in_miles_rounded = round(distance_in_miles, 2)
             duration_in_hours_rounded = round(duration_in_hours, 2)
-            # rounding both to two decimal places
             travel_info = f'The park is {distance_in_miles_rounded} miles away, and a {duration_in_hours_rounded} hour drive.'
-            return travel_info
+            # always return the same thing. Modified to be more consistent with other APIs
+            return travel_info, None 
         else:
-            return {'error': 'Route not found.'}
+            return None, 'Route not found.'
     except requests.exceptions.RequestException as e:
         print(f'Error fetching map data: {e}')
-        return {'error': str(e)}
-#     error handling
+        return None, f'Could not connect to map API because {e}'
+    except Exception as e:  # handle all other errors, for example, API response is not JSON, 
+        # or API response is JSON but not the correct format
+        return None, f'Error fetching or processing map data: {e}'
+        
+
 
 # if __name__ == '__main__':
 

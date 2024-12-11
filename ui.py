@@ -20,23 +20,44 @@ def display_menu_get_choice(menu):
 def getData():
     np = input('Enter national park name (e.g. "Grand Canyon National Park"): ')
     #month = input('Enter number of month you want to visit: ')
-    try:
-        user_input = input("Please enter a month number (1-12): ")  # Get input as a string
-        month = int(user_input)  # Convert input to an integer
-        # Optionally, check if the month is within the valid range
-        if month < 1 or month > 12:
-            print(f"Please enter a valid month number between 1 and 12.")
-    except ValueError:
-        print("Invalid input! Please enter a numeric value.")
+
+    while True:  # allow user to re-try 
+        try:
+            user_input = input("Please enter a month number (1-12): ")  # Get input as a string
+            month = int(user_input)  # Convert input to an integer
+            # Optionally, check if the month is within the valid range
+            if month < 1 or month > 12:
+                print(f"Please enter a valid month number between 1 and 12.")
+            else: 
+                # data is a number between 1 and 12, stop loop
+                break 
+        except ValueError:
+            print("Invalid input! Please enter a numeric value.")
     # location = input('Enter your location: ')
     return np, month
             
     
 # Function responsible for printing API results in a nice format
-def printPrettyResults(park_name, park_description, weather, distance): # todo add other arguments: # todo add other arguments
+def printPrettyResults(results, park_code, month): # todo add other arguments: # todo add other arguments
 
-    print(f'National Park: {park_name}')
-    print(f'Park Description: {park_description}')
-    print(f'Weather Info: {weather}')
-    print(f'Travel Info: {distance}')
-    #TODO display somehow
+    if results.get('park_error'):
+        print(f'Sorry, could not get any data for {park_code}')
+    else:
+        park_data = results.get('park_info')
+        # assume this a NationalPark object,
+        print(park_data) # prints the result of __str__ method in NationalPark
+
+    weather_description = results.get('weather_description')
+    if weather_description:
+        print(f'Weather: {weather_description}')
+    else:
+        print('Sorry, could not get weather')
+
+    travel_description = results.get('travel_description')
+    if travel_description:
+        print(f'Travel: {travel_description}')
+    else:
+        print('Sorry, could not get travel information')
+
+    
+    
