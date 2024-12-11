@@ -33,12 +33,12 @@ def get_national_park_info_from_api(park_code):
         national_park_info = response.json()
         park_data = national_park_info['data']
         park_result = NationalPark(park_code=park_code,
-                                   lat=get_park_lat (park_data),
+                                   lat=get_park_lat(park_data),
                                    long=get_park_long(park_data),
                                    postal_code=get_park_postal_code(park_data),
                                    park_name=get_park_name(park_data),
                                    park_description=get_park_description(park_data))
-        return park_result, None
+        return park_result, None  
     except Exception as e:
         print (e)
         print(response.text)
@@ -76,7 +76,7 @@ def get_park_lat(national_park_info):
     try:
         park_lat_long = national_park_info[0]['latLong']
         split_lat_long= park_lat_long.split(',')
-        lat_of_park = split_lat_long[0].split(':')[1]
+        lat_of_park = split_lat_long[0].split(':')[1]   
         return lat_of_park
     except KeyError:
         print('The park latitude data is not available')
@@ -87,7 +87,7 @@ def get_park_long(national_park_info):
     try:
         park_lat_long = national_park_info[0]['latLong']
         split_lat_long= park_lat_long.split(',')
-        long_of_park = split_lat_long[1].split(':')[1]
+        long_of_park = split_lat_long[1].split(':')[1]  
         return long_of_park
     except KeyError:
         print('The park longitude data is not available')
